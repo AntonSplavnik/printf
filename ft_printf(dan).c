@@ -19,13 +19,12 @@ static int	conversions(const char format, va_list args)
 	else if (format == 's')
 		len = ft_putstr(va_arg(args, char *));
 
+	else if (format == 'p')
+		len = ft_print_ptr(va_arg(args, unsigned long long));
+
 	else if (format == 'd' || format == 'i')
 		len = ft_print_number(va_arg(args, int));
 
-
-
-	else if (format == 'p')
-		len = ft_print_ptr(va_arg(args, unsigned long long));
 	else if (format == 'u')
 		len = ft_print_unsigned_int(va_arg(args, unsigned int));
 	else if (format == 'x' || format == 'X')

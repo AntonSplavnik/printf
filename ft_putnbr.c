@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 18:20:34 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/10 17:34:56 by asplavni         ###   ########.fr       */
+/*   Created: 2023/12/18 14:10:58 by asplavni          #+#    #+#             */
+/*   Updated: 2024/01/10 19:05:20 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-int	ft_putstr(char *s)
+void	ft_putnbr_fd(long n, int base);
 {
-	size_t	len;
-
-	if (s == NULL)
+	if (n == 0)
+		ft_putchar_fd(n + '0');
+	else if (n == -2147483648)
+		write(1, "-2147483648", 11);
+	else if (n < 10 && n > 0)
+		ft_putchar_fd(n + '0');
+	else if (n < 0)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		n = -n;
+		ft_putchar_fd('-');
+		ft_putnbr_fd(n);
 	}
-	len = ft_strlen(s);
-	write (1, s, len);
-	return (len);
+	else
+	{
+		ft_putnbr_fd(n / 10);
+		ft_putnbr_fd(n % 10);
+	}
 }
