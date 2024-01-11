@@ -6,7 +6,7 @@
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:54:24 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/10 19:33:06 by asplavni         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:46:23 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,23 @@ int	print_format(char format, va_list args)
 		count += ft_putchar(va_arg(args, int));
 	else if (format == 's')
 		count += ft_putstr(va_arg(args, char *));
-	else if (format == 'p')
-		count += ft_pointer();
 	else if (format == 'd' || format == 'i')
-		count += ft_putnbr((long)va_arg(args, int)), 10);
-	else if (format == 'x' || format == 'X')
-		count += ft_print_hex((long)(va_arg(args, int)), 10);
-	else if (format == 'u')
-		count += ft_print_unsigned_int(va_arg(args, unsigned int));
+		count += ft_putdigit((long)va_arg(args, int), 10);
+	else if (format == 'x')
+		count += ft_putdigit((long)(va_arg(args, unsigned int)), 16);
+	else if (format == 'X')
+		count += ft_putdigit2((long)(va_arg(args, unsigned int)), 16);
+	// else if (format == 'u')
+	// 	count += ft_putdigit((long)va_arg(args, int), 10);
+		// count += ft_putunsigned_int((long)va_arg(args, unsigned int));
+	// else if (format == 'p')
+	// 	count += ft_pointer();
 	else
 		count += write(1, &format, 1);
 	return (count);
 }
 
-int	ft_printfripoff(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		i;
 	int		count;
@@ -48,23 +51,28 @@ int	ft_printfripoff(const char *format, ...)
 	while (i < num_args)
 	{
 		if (format[i] == '%')
-			count += print_format(format[i++], args);
+		{
+			count += print_format(format[++i], args);
+		}
 		else
-			count += write(1, format, 1);
+			count += write(1, &format[i], 1);
 		i++;
 	}
 	va_end (args);
 	return (count);
 }
 
+# include <stdio.h>
 
-// int	main(void)
-// {
-// 	int	original_printf = printf("O%i %d %i", 4, 2, 4);
-// 	printf("Original value:%d\n", original_printf);
+int	main(void)
+{
+	int	value = 42;
 
-// 	int	ripoff_printf = ft_printfripoff("%d %f %d", 4, 2, 4);
-// 	printf("Ripoff value: %d\n", ripoff_printf);
+	int	original_printf = printf("input: %d\noutput: %X\n", value, value);
+	printf("count: %d\n", original_printf);
+	printf("\n");
+	int	ripoff_printf = ft_printf("input: %d\noutput: %X\n", value, value);
+	printf("count: %d\n", ripoff_printf);
 
-// 	return (0);
-// }
+	return (0);
+}

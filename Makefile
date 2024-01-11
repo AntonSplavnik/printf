@@ -1,23 +1,19 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
-SRCS =
-LIBFT = libft
+SRCS = ft_printf.c ft_strlen.c ft_strchr.c ft_putstr.c ft_putdigit.c ft_putdigit2 ft_putchar.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT)
-	ar rc $(NAME) $(OBJS) -L./$(LIBFT) -lft -c $< -o $@
+	ar rc $(NAME) $(OBJS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJS)
-	rm -rf $(LIBFT)/*.o
 
 fclean: clean
 	rm -Rf $(NAME)
-	rm -Rf $(LIBFT)/libft.a
 
 re: fclean all
 

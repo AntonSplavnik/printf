@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 19:55:15 by asplavni          #+#    #+#             */
-/*   Updated: 2023/12/10 17:30:50 by asplavni         ###   ########.fr       */
+/*   Created: 2024/01/11 15:36:35 by asplavni          #+#    #+#             */
+/*   Updated: 2024/01/11 16:08:33 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 size_t	ft_strlen(const char *s)
 {

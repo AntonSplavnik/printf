@@ -6,7 +6,7 @@
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:59:33 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/09 18:01:06 by asplavni         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:39:15 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include <stdint.h>
 
 int		ft_printf(const char *format, ...);
-
+int		ft_putchar(char c);
+int		ft_putdigit(long n, int base);
+int		ft_putdigit2(long n, int base);
+int		ft_putstr(char *s);
+size_t	ft_strlen(const char *s);
 
 #endif

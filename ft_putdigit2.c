@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putdigit2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 14:10:58 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/10 19:05:20 by asplavni         ###   ########.fr       */
+/*   Created: 2024/01/11 19:38:31 by asplavni          #+#    #+#             */
+/*   Updated: 2024/01/11 19:39:05 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_putnbr_fd(long n, int base);
+int	ft_putdigit2(long n, int base)
 {
-	if (n == 0)
-		ft_putchar_fd(n + '0');
-	else if (n == -2147483648)
-		write(1, "-2147483648", 11);
-	else if (n < 10 && n > 0)
-		ft_putchar_fd(n + '0');
-	else if (n < 0)
+	int		count;
+	char	*symbols;
+
+	symbols = "0123456789ABCDEF";
+	if (n < 0)
 	{
-		n = -n;
-		ft_putchar_fd('-');
-		ft_putnbr_fd(n);
+		write(1, "-", 1);
+		return (ft_putdigit(-n, base) + 1);
 	}
+	else if (n < base)
+		return (ft_putchar(symbols[n]));
 	else
 	{
-		ft_putnbr_fd(n / 10);
-		ft_putnbr_fd(n % 10);
+		count = ft_putdigit(n / base, base);
+		return (count + ft_putdigit(n % base, base));
 	}
 }
