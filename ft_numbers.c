@@ -6,7 +6,7 @@
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:14:34 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/12 19:50:52 by asplavni         ###   ########.fr       */
+/*   Updated: 2024/01/12 21:57:19 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	ft_pointer(long n, int base)
 		write(1, "-", 1);
 		return (ft_putdigit(-n, base) + 1);
 	}
-	else if (n < base)
-		return (ft_putchar(symbols[n]));
+	if (n < base)
+		return (count + ft_putchar(symbols[n]));
 	else
 	{
 		count += ft_putdigit(n / base, base);

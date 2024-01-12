@@ -6,7 +6,7 @@
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:54:24 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/12 19:52:21 by asplavni         ###   ########.fr       */
+/*   Updated: 2024/01/12 22:07:45 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ int	print_format(char format, va_list args)
 		count += ft_hexa((long)(va_arg(args, unsigned int)), 16, 'x');
 	else if (format == 'X')
 		count += ft_hexa((long)(va_arg(args, unsigned int)), 16, 'X');
-	// else if (format == 'u')
+// else if (format == 'u')
 	// 	count += ft_putdigit((long)va_arg(args, int), 10);
-		// count += ft_putunsigned_int((long)va_arg(args, unsigned int));
 	else if (format == 'p')
-		count += ft_pointer((long)(va_arg(args, unsigned int)), 16);
+		count += ft_pointer((long)(va_arg(args, unsigned int )), 16);
 	else
 		count += write(1, &format, 1);
 	return (count);
@@ -63,15 +62,16 @@ int	ft_printf(const char *format, ...)
 }
 
 #include <stdio.h>
+#include <limits.h>
 
 int	main(void)
 {
-	int	value = 15;
+	long	value = -1;
 
-	int	original_printf = printf("input: %d\noutput: %p\n", value, (void *)15);
+	int	original_printf = printf("input: %ld\noutput: %p\n", value, (void *)-1);
 	printf("count: %d\n", original_printf);
 	printf("\n");
-	int	ripoff_printf = ft_printf("input: %d\noutput: %p\n", value, 15);
+	int	ripoff_printf = ft_printf("input: %d\noutput: %p\n", value, (void *)-1);
 	printf("count: %d\n", ripoff_printf);
 
 	return (0);
