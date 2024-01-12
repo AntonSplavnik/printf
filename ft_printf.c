@@ -6,7 +6,7 @@
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:54:24 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/11 19:46:23 by asplavni         ###   ########.fr       */
+/*   Updated: 2024/01/12 19:52:21 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	print_format(char format, va_list args)
 	else if (format == 'd' || format == 'i')
 		count += ft_putdigit((long)va_arg(args, int), 10);
 	else if (format == 'x')
-		count += ft_putdigit((long)(va_arg(args, unsigned int)), 16);
+		count += ft_hexa((long)(va_arg(args, unsigned int)), 16, 'x');
 	else if (format == 'X')
-		count += ft_putdigit2((long)(va_arg(args, unsigned int)), 16);
+		count += ft_hexa((long)(va_arg(args, unsigned int)), 16, 'X');
 	// else if (format == 'u')
 	// 	count += ft_putdigit((long)va_arg(args, int), 10);
 		// count += ft_putunsigned_int((long)va_arg(args, unsigned int));
-	// else if (format == 'p')
-	// 	count += ft_pointer();
+	else if (format == 'p')
+		count += ft_pointer((long)(va_arg(args, unsigned int)), 16);
 	else
 		count += write(1, &format, 1);
 	return (count);
@@ -62,16 +62,16 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-# include <stdio.h>
+#include <stdio.h>
 
 int	main(void)
 {
-	int	value = 42;
+	int	value = 15;
 
-	int	original_printf = printf("input: %d\noutput: %X\n", value, value);
+	int	original_printf = printf("input: %d\noutput: %p\n", value, (void *)15);
 	printf("count: %d\n", original_printf);
 	printf("\n");
-	int	ripoff_printf = ft_printf("input: %d\noutput: %X\n", value, value);
+	int	ripoff_printf = ft_printf("input: %d\noutput: %p\n", value, 15);
 	printf("count: %d\n", ripoff_printf);
 
 	return (0);
