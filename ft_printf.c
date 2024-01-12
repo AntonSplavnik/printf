@@ -6,7 +6,7 @@
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:54:24 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/12 22:10:10 by asplavni         ###   ########.fr       */
+/*   Updated: 2024/01/12 22:33:02 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	print_format(char format, va_list args)
 // else if (format == 'u')
 	// 	count += ft_putdigit((long)va_arg(args, int), 10);
 	else if (format == 'p')
-		count += ft_pointer((long)(va_arg(args, unsigned int )), 16);
+		count += ft_pointer((long)(va_arg(args, unsigned int)), 16);
 	else
 		count += write(1, &format, 1);
 	return (count);
