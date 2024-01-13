@@ -6,7 +6,7 @@
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:54:24 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/12 22:33:02 by asplavni         ###   ########.fr       */
+/*   Updated: 2024/01/13 11:12:53 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	print_format(char format, va_list args)
 		count += ft_hexa((long)(va_arg(args, unsigned int)), 16, 'x');
 	else if (format == 'X')
 		count += ft_hexa((long)(va_arg(args, unsigned int)), 16, 'X');
-// else if (format == 'u')
-	// 	count += ft_putdigit((long)va_arg(args, int), 10);
+	else if (format == 'u')
+		count += ft_putdigit((long)va_arg(args, unsigned int), 10);
 	else if (format == 'p')
-		count += ft_pointer((long)(va_arg(args, unsigned int)), 16);
+		count += ft_pointer((long)(va_arg(args, unsigned long)), 16);
 	else
 		count += write(1, &format, 1);
 	return (count);
@@ -60,7 +60,7 @@ int	ft_printf(const char *format, ...)
 	va_end (args);
 	return (count);
 }
-
+/*
 #include <stdio.h>
 #include <limits.h>
 
@@ -74,5 +74,10 @@ int	main(void)
 	int	ripoff_printf = ft_printf("input: %d\noutput: %p\n", value, (void *)-1);
 	printf("count: %d\n", ripoff_printf);
 
+
+	printf("or: %p %p\n", LONG_MIN, LONG_MAX);
+	ft_printf("my: %p %p\n", LONG_MIN, LONG_MAX);
+
 	return (0);
 }
+ */

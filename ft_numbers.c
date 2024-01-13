@@ -6,13 +6,13 @@
 /*   By: asplavni <asplavni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:14:34 by asplavni          #+#    #+#             */
-/*   Updated: 2024/01/12 22:30:22 by asplavni         ###   ########.fr       */
+/*   Updated: 2024/01/13 11:10:57 by asplavni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putdigit(long n, int base)
+int	ft_putdigit(long long n, int base)
 {
 	int		count;
 	char	*symbols;
@@ -55,7 +55,7 @@ int	ft_hexa(long n, int base, char UP_or_low)
 	}
 }
 
-int	ft_pointer(long n, int base)
+int	ft_pointer(unsigned long n, int base)
 {
 	int		count;
 	char	*symbols;
@@ -65,12 +65,7 @@ int	ft_pointer(long n, int base)
 	if (n == 0)
 		return (write (1, "(nil)", 5));
 	count += write(1, "0x", 2);
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		return (ft_putdigit(-n, base) + 1);
-	}
-	if (n < base)
+	if (n < (unsigned long)base)
 		return (count + ft_putchar(symbols[n]));
 	else
 	{
